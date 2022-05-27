@@ -1,4 +1,4 @@
-package gofm
+package gofile
 
 import (
 	"io/fs"
