@@ -1,13 +1,5 @@
 package gofile
 
-/*
-	Names:
-	1. Storage
-	2. Location
-	3. Filesystem
-	4.
-*/
-
 type LocationInterface interface {
 	// Open the location
 	Open() (bool, error)

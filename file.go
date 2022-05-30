@@ -6,31 +6,14 @@ import (
 	"time"
 )
 
-// FileDestination -> is used when copying or moving to a new destination
-type FileDestination struct {
-	Path     string
-	FileMode os.FileMode
+type FileInterface interface {
+	//
+	Read([]byte) (int, error)
+	Info() FileInfoInterface // TODO: we can return all the functions from the current file over there
 
-	// if you want to receive in real time the status (how much left to copy)
-	// put a callback handler over here
-	OnCopy FileOnCopy
+	// TODO: we need a function which will return the structure
 
-	// If copied to DB
-	// nothing is needed!
 }
-
-type FileOnCopy func(status FileCopyStatus)
-
-type FileCopyStatus struct {
-	PercentageCopied int8
-	BytesCopied      int64
-	LeftBytes        int64
-	// when it will finish
-	FinishETA   time.Time
-	LeftSeconds int64
-}
-
-//type FileStatusChange func(status *FileInfo)
 
 type FileInfoInterface interface {
 	// ToStruct ->  Converts to a struct
@@ -71,11 +54,28 @@ type FileInfo struct {
 	CreatedAt   time.Time
 }
 
-type FileInterface interface {
-	//
-	Read([]byte) (int, error)
-	Info() FileInfoInterface // TODO: we can return all the functions from the current file over there
+// FileDestination -> is used when copying or moving to a new destination
+type FileDestination struct {
+	Path     string
+	FileMode os.FileMode
 
-	// TODO: we need a function which will return the structure
+	// if you want to receive in real time the status (how much left to copy)
+	// put a callback handler over here
+	OnCopy FileOnCopy
 
+	// If copied to DB
+	// nothing is needed!
 }
+
+type FileOnCopy func(status FileCopyStatus)
+
+type FileCopyStatus struct {
+	PercentageCopied int8
+	BytesCopied      int64
+	LeftBytes        int64
+	// when it will finish
+	FinishETA   time.Time
+	LeftSeconds int64
+}
+
+//type FileStatusChange func(status *FileInfo)
