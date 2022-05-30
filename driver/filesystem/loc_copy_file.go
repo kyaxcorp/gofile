@@ -23,12 +23,19 @@ func (l *Location) CopyFile(
 
 	destPath := l.GetFilePath(dest.Path)
 
-	// set default file mode in case if it's not set
-	if dest.FileMode == 0 {
-		dest.FileMode = 0751
+	fileMode := file.Info().Mode()
+
+	// override the current files one!
+	if dest.FileMode != 0 {
+		fileMode = dest.FileMode
 	}
 
-	_err = os.WriteFile(destPath, data, dest.FileMode)
+	// if no file mode has been set or retrieved
+	if fileMode == 0 {
+		fileMode = 0751
+	}
+
+	_err = os.WriteFile(destPath, data, fileMode)
 	if _err != nil {
 		// failed to write...
 		return nil, _err
