@@ -1,6 +1,7 @@
 package filesystem
 
-func newFile(filePath string) (*File, error) {
+//TODO: we should rename this function...
+func (l *Location) newFile(filePath string) (*File, error) {
 	// Generate file info
 	fInfo, _err := newFileInfo(filePath)
 	if _err != nil {
@@ -9,8 +10,9 @@ func newFile(filePath string) (*File, error) {
 
 	// generate the file itself
 	f := &File{
-		FPath: filePath,
-		info:  *fInfo,
+		FPath:    filePath,
+		info:     *fInfo,
+		location: l,
 	}
 
 	// return

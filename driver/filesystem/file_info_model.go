@@ -5,6 +5,7 @@ import (
 	"github.com/kyaxcorp/gofile"
 	"github.com/kyaxcorp/gofile/driver/filesystem/helper"
 	"os"
+	"path/filepath"
 	"time"
 )
 
@@ -48,7 +49,7 @@ func newFileInfo(filePath string) (*FileInfo, error) {
 		extension:   fileNameDetails.Extension,
 		updatedAt:   fileInfo.ModTime(),
 		//createdAt:   time.Now(), // TODO:
-		dirPath: "",
+		dirPath: filepath.Dir(filePath),
 		mode:    fileInfo.Mode(),
 		sys:     fileInfo.Sys(),
 	}

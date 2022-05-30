@@ -13,6 +13,8 @@ type FileInterface interface {
 
 	// TODO: we need a function which will return the structure
 
+	// Get location of the file
+	Location() LocationInterface
 }
 
 type Any = interface{}

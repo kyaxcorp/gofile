@@ -11,7 +11,6 @@ func (l *Location) CopyFile(
 	dest gofile.FileDestination,
 ) (gofile.FileInterface, error) {
 	// Read the file
-	var data []byte
 	data, _err := file.Read()
 	if _err != nil {
 		// failed to read...
@@ -22,16 +21,19 @@ func (l *Location) CopyFile(
 		return nil, err.ErrDestinationPathIsEmpty
 	}
 
+	destPath := l.GetFilePath(dest.Path)
+
 	// set default file mode in case if it's not set
 	if dest.FileMode == 0 {
 		dest.FileMode = 0751
 	}
 
-	_err = os.WriteFile(dest.Path, data, dest.FileMode)
+	_err = os.WriteFile(destPath, data, dest.FileMode)
 	if _err != nil {
 		// failed to write...
 		return nil, _err
 	}
 
-	return newFile(dest.Path)
+	// we should give the path for that location, nothing more! (the one that's indicated by the user)
+	return l.newFile(dest.Path)
 }

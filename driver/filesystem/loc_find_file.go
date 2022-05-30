@@ -18,7 +18,7 @@ func (l *Location) FindFile(filePath string) (gofile.FileInterface, error) {
 	// File the file!
 	// Check if exists
 
-	fullFilePath := l.GetFilePath(filePath)
+	//fullFilePath := l.GetFilePath(filePath)
 
 	exists, _err := l.FileExists(filePath)
 	if _err != nil {
@@ -29,5 +29,6 @@ func (l *Location) FindFile(filePath string) (gofile.FileInterface, error) {
 	}
 
 	// Return the current file
-	return newFile(fullFilePath)
+	//return newFile(fullFilePath)
+	return l.newFile(filePath)
 }
