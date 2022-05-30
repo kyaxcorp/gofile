@@ -1,7 +1,7 @@
 package filesystem
 
 import (
-	"github.com/kyaxcorp/gofile/driver"
+	"github.com/kyaxcorp/gofile"
 	"io/ioutil"
 )
 
@@ -44,6 +44,6 @@ func (f *File) Delete() error {
 	return nil
 }
 
-func (f *File) Info() driver.FileInfoInterface {
+func (f *File) Info() gofile.FileInfoInterface {
 	return &f.info
 }

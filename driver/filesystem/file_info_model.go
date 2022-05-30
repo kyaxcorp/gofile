@@ -2,7 +2,7 @@ package filesystem
 
 import (
 	"github.com/google/uuid"
-	"github.com/kyaxcorp/gofile/driver"
+	"github.com/kyaxcorp/gofile"
 	"github.com/kyaxcorp/gofile/driver/filesystem/helper"
 	"os"
 	"time"
@@ -52,8 +52,8 @@ func newFileInfo(filePath string) (*FileInfo, error) {
 	return fInfo, nil
 }
 
-func (f *FileInfo) ToStruct() driver.FileInfo {
-	return driver.FileInfo{
+func (f *FileInfo) ToStruct() gofile.FileInfo {
+	return gofile.FileInfo{
 		ID:          f.ID(),
 		Name:        f.Name(),
 		FullName:    f.FullName(),

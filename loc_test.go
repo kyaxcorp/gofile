@@ -16,11 +16,11 @@ func TestLocation(t *testing.T) {
 		DirPath: "./loc2/",
 	}
 
-	//loc1, _err := OpenLocation()
-	//if _err != nil {
-	//	t.Error(_err)
-	//	return
-	//}
+	oploc1, _err := OpenLocation(loc1)
+	if _err != nil {
+		t.Error(_err)
+		return
+	}
 
 	// now let's identify some files from the loc 1
 
@@ -31,7 +31,7 @@ func TestLocation(t *testing.T) {
 		return
 	}
 
-	fileInfo, _err := loc2.CopyFile(file, driver.FileDestination{
+	file, _err := loc2.CopyFile(file, driver.FileDestination{
 		Path:     "vasea.txt",
 		FileMode: 0751,
 	})

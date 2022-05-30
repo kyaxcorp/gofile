@@ -1,10 +1,12 @@
 package filesystem
 
-import "github.com/kyaxcorp/gofile/driver"
+import (
+	"github.com/kyaxcorp/gofile"
+)
 
 func (l *Location) MoveFile(
-	file driver.FileInterface,
-	dest driver.FileDestination,
-) (*driver.FileInfo, error) {
+	file gofile.FileInterface,
+	dest gofile.FileDestination,
+) (gofile.FileInterface, error) {
 	return nil, nil
 }

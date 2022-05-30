@@ -1,11 +1,11 @@
 package filesystem
 
 import (
-	"github.com/kyaxcorp/gofile/driver"
+	"github.com/kyaxcorp/gofile"
 	"github.com/kyaxcorp/gofile/err"
 )
 
-func (l *Location) FindFile(filePath string) (driver.FileInterface, error) {
+func (l *Location) FindFile(filePath string) (gofile.FileInterface, error) {
 	// Check if file exists
 	// if yes then return the file
 
