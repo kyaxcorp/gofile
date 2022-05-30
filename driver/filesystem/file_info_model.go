@@ -23,7 +23,7 @@ type FileInfo struct {
 
 func newFileInfo(filePath string) (*FileInfo, error) {
 	fileInfo, _err := os.Stat(filePath)
-	if _err == nil {
+	if _err != nil {
 		return nil, _err
 	}
 

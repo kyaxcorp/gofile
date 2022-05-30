@@ -6,12 +6,14 @@ import (
 )
 
 func (l *Location) FileExists(filePath string) (bool, error) {
-	_, _err := os.Stat(filePath)
+	fullFilePath := l.GetFilePath(filePath)
+	_, _err := os.Stat(fullFilePath)
 	if _err == nil {
+		// File exists
 		return true, nil
 	}
 	if errors.Is(_err, os.ErrNotExist) {
-		return false, nil
+		return false, os.ErrNotExist
 	}
 	return false, _err
 }

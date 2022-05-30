@@ -12,7 +12,7 @@ func (l *Location) CopyFile(
 ) (gofile.FileInterface, error) {
 	// Read the file
 	var data []byte
-	_, _err := file.Read(data)
+	data, _err := file.Read()
 	if _err != nil {
 		// failed to read...
 		return nil, _err

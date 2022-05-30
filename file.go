@@ -8,7 +8,7 @@ import (
 
 type FileInterface interface {
 	//
-	Read([]byte) (int, error)
+	Read() ([]byte, error)
 	Info() FileInfoInterface // TODO: we can return all the functions from the current file over there
 
 	// TODO: we need a function which will return the structure
