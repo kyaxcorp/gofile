@@ -12,8 +12,8 @@ type LocationInterface interface {
 	// Open the location
 	Open() (bool, error)
 
-	CopyFile(file FileInterface, dest FileDestination) (*FileInfo, error)
-	MoveFile(file FileInterface, dest FileDestination) (*FileInfo, error)
+	CopyFile(file FileInterface, dest FileDestination) (FileInterface, error)
+	MoveFile(file FileInterface, dest FileDestination) (FileInterface, error)
 
 	// DeleteFile - File status will be used for deletion
 	DeleteFile(file FileInterface) error

@@ -9,7 +9,7 @@ import (
 func (l *Location) CopyFile(
 	file driver.FileInterface,
 	dest driver.FileDestination,
-) (*driver.FileInfo, error) {
+) (driver.FileInterface, error) {
 	// Read the file
 	var data []byte
 	_, _err := file.Read(data)
@@ -33,9 +33,5 @@ func (l *Location) CopyFile(
 		return nil, _err
 	}
 
-	// TODO: generate the new file from the new location
-
-	return &driver.FileInfo{
-		DirPath: dest.Path,
-	}, nil
+	return newFile(dest.Path)
 }
