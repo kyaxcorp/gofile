@@ -1,10 +1,24 @@
 package driver
 
+/*
+	Names:
+	1. Storage
+	2. Location
+	3. Filesystem
+	4.
+*/
+
 type LocationInterface interface {
 	// Open the location
 	Open() (bool, error)
 
-	//Save()
+	CopyFile(file FileInterface, dest FileDestination) (*FileStatus, error)
+	MoveFile(file FileInterface, dest FileDestination) (*FileStatus, error)
+
+	// DeleteFile - File status will be used for deletion
+	DeleteFile(file FileInterface) error
+
+	//Save() // should not be used...
 	//Copy()
 	//Move()
 	//Delete()
