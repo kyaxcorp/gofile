@@ -25,8 +25,7 @@ func (l *Location) FindFile(filePath string) (driver.FileInterface, error) {
 	if !exists {
 		return nil, err.ErrFileDoesntExist
 	}
+
 	// Return the current file
-	return &File{
-		Path: filePath,
-	}, nil
+	return newFile(filePath)
 }

@@ -30,36 +30,52 @@ type FileCopyStatus struct {
 	LeftSeconds int64
 }
 
-//type FileStatusChange func(status *FileStatus)
+//type FileStatusChange func(status *FileInfo)
 
-type FileStatus struct {
-	//DirPath  string
-	//FilePath string
-	//Name     string
-	//FileMode os.FileMode
-	// in case if it's copied to DB
-	//ID *uuid.UUID
+type FileInfoInterface interface {
+	// ToStruct ->  Converts to a struct
+	ToStruct() FileInfo
 
-	// File ->  Returns back the file itself
-	File FileInterface
+	// ID - is available only when saving to a storage which supports File Identification
+	ID() *uuid.UUID
+	//
+	Name() string
+	FullName() string
+	//
+	Path() string
+	DirPath() string
+
+	ContentType() string
+	Size() int64
+	Extension() string
+
+	Mode() os.FileMode
+	//
+	UpdatedAt() time.Time
+	CreatedAt() time.Time
+	// TODO: add function Sys
+	// 		which will return file owner, permissions for other OS'ses and other storage platforms?!
+}
+
+type FileInfo struct {
+	ID          *uuid.UUID
+	Name        string
+	FullName    string
+	Path        string
+	DirPath     string
+	ContentType string
+	Size        int64
+	Extension   string
+	Mode        os.FileMode
+	UpdatedAt   time.Time
+	CreatedAt   time.Time
 }
 
 type FileInterface interface {
 	//
 	Read([]byte) (int, error)
-	Status() FileStatus
+	Info() FileInfoInterface // TODO: we can return all the functions from the current file over there
 
-	Name() string
-	Size() int64
-	Extension() string
-	Path() string
-	DirPath() string
-	Mode() os.FileMode
-	ID() *uuid.UUID
+	// TODO: we need a function which will return the structure
 
-	// TODO: to a function which will read in chunks, not entirely!
-	// 		 we need the transfer between the source and destination to be
-	//		 - smart
-	//		 - low memory
-	//		 - fast
 }

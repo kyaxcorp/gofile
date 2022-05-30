@@ -5,6 +5,6 @@ import "github.com/kyaxcorp/gofile/driver"
 func (l *Location) MoveFile(
 	file driver.FileInterface,
 	dest driver.FileDestination,
-) (*driver.FileStatus, error) {
+) (*driver.FileInfo, error) {
 	return nil, nil
 }
