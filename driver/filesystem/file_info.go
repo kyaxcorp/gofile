@@ -1,7 +1,9 @@
 package filesystem
 
-import "github.com/kyaxcorp/gofile"
+import (
+	"github.com/kyaxcorp/gofile/driver"
+)
 
-func (f *File) Info() gofile.FileInfoInterface {
+func (f *File) Info() driver.FileInfoInterface {
 	return &f.info
 }

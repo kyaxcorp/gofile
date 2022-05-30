@@ -1,4 +1,4 @@
-package gofile
+package driver
 
 import (
 	"github.com/google/uuid"

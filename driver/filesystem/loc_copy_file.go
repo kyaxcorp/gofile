@@ -1,15 +1,15 @@
 package filesystem
 
 import (
-	"github.com/kyaxcorp/gofile"
+	"github.com/kyaxcorp/gofile/driver"
 	"github.com/kyaxcorp/gofile/err"
 	"os"
 )
 
 func (l *Location) CopyFile(
-	file gofile.FileInterface,
-	dest gofile.FileDestination,
-) (gofile.FileInterface, error) {
+	file driver.FileInterface,
+	dest driver.FileDestination,
+) (driver.FileInterface, error) {
 	// Read the file
 	data, _err := file.Read()
 	if _err != nil {

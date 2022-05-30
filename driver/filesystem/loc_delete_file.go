@@ -1,11 +1,11 @@
 package filesystem
 
 import (
-	"github.com/kyaxcorp/gofile"
+	"github.com/kyaxcorp/gofile/driver"
 )
 
 func (l *Location) DeleteFile(
-	file gofile.FileInterface,
+	file driver.FileInterface,
 ) error {
 	return nil
 }

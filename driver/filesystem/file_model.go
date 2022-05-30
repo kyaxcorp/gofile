@@ -1,6 +1,8 @@
 package filesystem
 
-import "github.com/kyaxcorp/gofile"
+import (
+	"github.com/kyaxcorp/gofile/driver"
+)
 
 type File struct {
 	// Where it's physically located
@@ -8,7 +10,7 @@ type File struct {
 	FPath string
 
 	// this is files location
-	location gofile.LocationInterface
+	location driver.LocationInterface
 	//
 	info FileInfo
 }

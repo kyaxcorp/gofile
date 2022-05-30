@@ -1,4 +1,4 @@
-package gofile
+package driver
 
 type LocationInterface interface {
 	// Open the location

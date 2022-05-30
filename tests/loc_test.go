@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"github.com/kyaxcorp/gofile"
+	"github.com/kyaxcorp/gofile/driver"
 	"github.com/kyaxcorp/gofile/driver/filesystem"
 	"log"
 	"testing"
@@ -29,7 +29,7 @@ func TestLocation(t *testing.T) {
 		return
 	}
 
-	newFile, _err := loc2.CopyFile(file, gofile.FileDestination{
+	newFile, _err := loc2.CopyFile(file, driver.FileDestination{
 		Path:     "testfile2.md",
 		FileMode: 0751,
 	})
