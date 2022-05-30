@@ -15,6 +15,8 @@ type FileInterface interface {
 
 }
 
+type Any = interface{}
+
 type FileInfoInterface interface {
 	// ToStruct ->  Converts to a struct
 	ToStruct() FileInfo
@@ -36,6 +38,8 @@ type FileInfoInterface interface {
 	//
 	UpdatedAt() time.Time
 	CreatedAt() time.Time
+	// Sys - other system info for this file
+	Sys() Any
 	// TODO: add function Sys
 	// 		which will return file owner, permissions for other OS'ses and other storage platforms?!
 }
@@ -52,6 +56,7 @@ type FileInfo struct {
 	Mode        os.FileMode
 	UpdatedAt   time.Time
 	CreatedAt   time.Time
+	Sys         Any
 }
 
 // FileDestination -> is used when copying or moving to a new destination

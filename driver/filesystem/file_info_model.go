@@ -19,6 +19,8 @@ type FileInfo struct {
 	mode        os.FileMode
 	createdAt   time.Time
 	updatedAt   time.Time
+	//
+	sys gofile.Any
 }
 
 func newFileInfo(filePath string) (*FileInfo, error) {
@@ -45,9 +47,10 @@ func newFileInfo(filePath string) (*FileInfo, error) {
 		contentType: contentType,
 		extension:   fileNameDetails.Extension,
 		updatedAt:   fileInfo.ModTime(),
-		//createdAt: time.Now(),
+		//createdAt:   time.Now(), // TODO:
 		dirPath: "",
 		mode:    fileInfo.Mode(),
+		sys:     fileInfo.Sys(),
 	}
 	return fInfo, nil
 }
@@ -65,11 +68,16 @@ func (f *FileInfo) ToStruct() gofile.FileInfo {
 		Mode:        f.Mode(),
 		UpdatedAt:   f.UpdatedAt(),
 		CreatedAt:   f.CreatedAt(),
+		Sys:         f.Sys(),
 	}
 }
 
 func (f *FileInfo) Name() string {
 	return f.name
+}
+
+func (f *FileInfo) Sys() gofile.Any {
+	return f.sys
 }
 
 func (f *FileInfo) FullName() string {
