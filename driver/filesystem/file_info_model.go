@@ -24,7 +24,7 @@ type FileInfo struct {
 	sys gofile.Any
 }
 
-func newFileInfo(filePath string) (*FileInfo, error) {
+func NewFileInfo(filePath string) (*FileInfo, error) {
 	fileInfo, _err := os.Stat(filePath)
 	if _err != nil {
 		return nil, _err

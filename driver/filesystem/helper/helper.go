@@ -1,7 +1,6 @@
 package helper
 
 import (
-	"io/fs"
 	"net/http"
 	"os"
 	"strings"
@@ -45,12 +44,6 @@ type FileMetaData struct {
 	Extension   string
 }
 
-// TODO:
-func GetFileMetaDataByPath(filePath string) (*FileMetaData, error) {
-
-	return nil, nil
-}
-
 type FileNameDetails struct {
 	Name      string
 	BaseName  string
@@ -78,28 +71,4 @@ func ExtractFileNameDetails(baseName string) FileNameDetails {
 		BaseName:  baseName,
 		Extension: extension,
 	}
-}
-
-func GetFileMetaData(f fs.File) (*FileMetaData, error) {
-	contentType, _err := GetFileContentType(f)
-	if _err != nil {
-		return nil, _err
-	}
-	fileInfo, _err := f.Stat()
-	if _err != nil {
-		return nil, _err
-	}
-
-	fileBaseName := fileInfo.Name()
-	// Try getting the file name and extension
-
-	fileNameDetails := ExtractFileNameDetails(fileBaseName)
-
-	return &FileMetaData{
-		ContentType: contentType,
-		Size:        fileInfo.Size(),
-		Name:        fileNameDetails.Name,
-		BaseName:    fileBaseName,
-		Extension:   fileNameDetails.Extension,
-	}, nil
 }
