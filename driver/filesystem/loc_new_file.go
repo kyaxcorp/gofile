@@ -4,8 +4,8 @@ package filesystem
 func (l *Location) newFile(filePath string) (*File, error) {
 	// Generate file info
 
-	originalFilePath := l.GetFilePath(filePath)
-	fInfo, _err := NewFileInfo(originalFilePath, filePath)
+	physicalFilePath := l.GetFilePath(filePath)
+	fInfo, _err := NewFileInfo(physicalFilePath, filePath)
 	if _err != nil {
 		return nil, _err
 	}
