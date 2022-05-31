@@ -5,5 +5,10 @@ import (
 )
 
 func (l *Location) GetFilePath(filePath string) string {
-	return l.DirPath + filepath.FromSlash("/") + filePath
+	p := ""
+	if l.DirPath != "" {
+		p = p + l.DirPath + filepath.FromSlash("/")
+	}
+	p = p + filePath
+	return p
 }

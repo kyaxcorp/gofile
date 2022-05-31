@@ -63,7 +63,17 @@ type FileInfo struct {
 
 // FileDestination -> is used when copying or moving to a new destination
 type FileDestination struct {
-	Path     string
+	// if none of the lower params are indicated, it will take the current files basedir and it will
+	// recreate on the destination location
+	//========= Optional Params ===========\\
+	// DirPath -> is optional, a new folder path is indicated, the file name remains the same!
+	DirPath string
+
+	// FilePath -> is optional, a new full file path is indicated (it includes as the dir path)
+	FilePath string
+	//========= Optional Params ===========\\
+
+	// FileMode -> is optional, If you need to override the currents file mode, the set here
 	FileMode os.FileMode
 
 	// if you want to receive in real time the status (how much left to copy)

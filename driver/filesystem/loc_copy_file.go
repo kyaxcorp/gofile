@@ -4,6 +4,7 @@ import (
 	"github.com/kyaxcorp/gofile/driver"
 	"github.com/kyaxcorp/gofile/err"
 	"os"
+	"path/filepath"
 )
 
 func (l *Location) CopyFile(
@@ -17,11 +18,27 @@ func (l *Location) CopyFile(
 		return nil, _err
 	}
 
-	if dest.Path == "" {
+	// let's generate files path
+	destPath := ""
+	if dest.FilePath != "" {
+		// Check if file path is indicated! it overrides everything
+		destPath = dest.FilePath
+	} else if dest.DirPath != "" {
+		// check if DirPath is indicated, it overrides the default one
+		// take the file name
+		destPath = dest.DirPath + filepath.FromSlash("/") + file.Info().FullName()
+	} else {
+		// if none of the optional params are indicated, it will take the current files
+		// Base Path and recreate on the new location
+		// Get file path
+		destPath = file.Info().Path()
+	}
+
+	if destPath == "" {
 		return nil, err.ErrDestinationPathIsEmpty
 	}
 
-	destPath := l.GetFilePath(dest.Path)
+	fileDestPath := l.GetFilePath(destPath)
 
 	fileMode := file.Info().Mode()
 
@@ -35,12 +52,12 @@ func (l *Location) CopyFile(
 		fileMode = 0751
 	}
 
-	_err = os.WriteFile(destPath, data, fileMode)
+	_err = os.WriteFile(fileDestPath, data, fileMode)
 	if _err != nil {
 		// failed to write...
 		return nil, _err
 	}
 
 	// we should give the path for that location, nothing more! (the one that's indicated by the user)
-	return l.newFile(dest.Path)
+	return l.newFile(destPath)
 }
