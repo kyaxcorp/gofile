@@ -2,6 +2,7 @@ package filesystem
 
 import (
 	"github.com/kyaxcorp/gofile/driver"
+	"github.com/kyaxcorp/gofile/driver/filesystem/helper"
 	"github.com/kyaxcorp/gofile/err"
 	"os"
 	"path/filepath"
@@ -50,6 +51,18 @@ func (l *Location) CopyFile(
 	// if no file mode has been set or retrieved
 	if fileMode == 0 {
 		fileMode = 0751
+	}
+
+	// But before creating the file, we should check if the Base Dir exists
+	// If it doesn't we should create it
+	baseDir := filepath.Dir(fileDestPath)
+	if !helper.FolderExists(baseDir) {
+		// Create the path recursively
+		_err := helper.MkDir(baseDir)
+		if _err != nil {
+			// failed to create folder...
+			return nil, _err
+		}
 	}
 
 	_err = os.WriteFile(fileDestPath, data, fileMode)
