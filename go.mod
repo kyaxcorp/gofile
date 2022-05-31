@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/google/uuid v1.3.0
-	gorm.io/gorm v1.23.5
+	gorm.io/gorm v1.22.4
 )
 
 require (
