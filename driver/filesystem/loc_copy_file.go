@@ -39,6 +39,13 @@ func (l *Location) CopyFile(
 		return nil, err.ErrDestinationPathIsEmpty
 	}
 
+	if dest.FileName != "" {
+		tmpDir := filepath.Dir(destPath)
+		// Override the file name...
+		destPath = tmpDir + filepath.FromSlash("/") + dest.FileName
+		//tmpFile := filepath.Base(destPath)
+	}
+
 	fileDestPath := l.GetFilePath(destPath)
 
 	fileMode := file.Info().Mode()

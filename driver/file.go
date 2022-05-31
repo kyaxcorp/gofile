@@ -63,6 +63,10 @@ type FileInfo struct {
 
 // FileDestination -> is used when copying or moving to a new destination
 type FileDestination struct {
+	// FileName -> if necessary you can override the file name
+	// it will override even for DirPath & FilePath
+	FileName string
+
 	// if none of the lower params are indicated, it will take the current files basedir and it will
 	// recreate on the destination location
 	//========= Optional Params ===========\\
