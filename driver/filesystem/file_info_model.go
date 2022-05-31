@@ -24,8 +24,8 @@ type FileInfo struct {
 	sys driver.Any
 }
 
-func NewFileInfo(filePath string) (*FileInfo, error) {
-	fileInfo, _err := os.Stat(filePath)
+func NewFileInfo(originalFilePath, filePath string) (*FileInfo, error) {
+	fileInfo, _err := os.Stat(originalFilePath)
 	if _err != nil {
 		return nil, _err
 	}
@@ -35,7 +35,7 @@ func NewFileInfo(filePath string) (*FileInfo, error) {
 	fileNameDetails := helper.ExtractFileNameDetails(baseName)
 
 	// Get content type
-	contentType, _err := helper.GetFileContentTypeByPath(filePath)
+	contentType, _err := helper.GetFileContentTypeByPath(originalFilePath)
 	if _err != nil {
 		return nil, _err
 	}
