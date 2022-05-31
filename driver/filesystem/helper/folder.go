@@ -17,3 +17,7 @@ func MkDir(path string, perm ...os.FileMode) error {
 	}
 	return os.MkdirAll(path, p)
 }
+
+func FolderDelete(path string) error {
+	return os.RemoveAll(path)
+}
