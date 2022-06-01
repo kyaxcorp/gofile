@@ -58,7 +58,8 @@ func ExtractFileNameDetails(baseName string) FileNameDetails {
 	if strings.Contains(baseName, extensionSep) {
 		fileBaseNameSplit := strings.Split(baseName, extensionSep)
 		// Recreate the file name without extension
-		fileName = strings.Join(fileBaseNameSplit[:len(fileBaseNameSplit)-2], extensionSep)
+		// Take from 0 to the pre last element
+		fileName = strings.Join(fileBaseNameSplit[:len(fileBaseNameSplit)-1], extensionSep)
 		// take the last one!
 		extension = fileBaseNameSplit[len(fileBaseNameSplit)-1]
 	} else {

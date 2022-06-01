@@ -30,7 +30,7 @@ func TestLocation(t *testing.T) {
 	}
 
 	newFile, _err := loc2.CopyFile(file, driver.FileDestination{
-		Path:     "testfile2.md",
+		//Path:     "testfile2.md",
 		FileMode: 0751,
 	})
 	if _err != nil {
