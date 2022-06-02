@@ -12,6 +12,8 @@ type LocationInterface interface {
 
 	// FileFromInfo -> it recreates the file struct/object from FileInfo so further manipulations can be made
 	FileFromInfo(fileInfo FileInfo) (FileInterface, error)
+	FileFromInfoMap(fileInfo map[string]interface{}) (FileInterface, error)
+	FileFromInfoJson(fileInfo string) (FileInterface, error)
 	// RestoreFile by FileInfo
 
 	//Save() // should not be used...

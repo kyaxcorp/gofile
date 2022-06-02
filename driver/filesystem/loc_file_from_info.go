@@ -14,3 +14,15 @@ func (l *Location) FileFromInfo(fileInfo driver.FileInfo) (driver.FileInterface,
 	// return
 	return f, nil
 }
+
+// TODO:
+// FileFromInfoMap -> it recreates the file struct/object from driver.FileInfo so further manipulations can be made
+func (l *Location) FileFromInfoMap(fileInfo map[string]interface{}) (driver.FileInterface, error) {
+	return nil, nil
+}
+
+// TODO:
+// FileFromInfoMap -> it recreates the file struct/object from driver.FileInfo so further manipulations can be made
+func (l *Location) FileFromInfoJson(fileInfo string) (driver.FileInterface, error) {
+	return nil, nil
+}
