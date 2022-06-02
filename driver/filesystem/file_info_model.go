@@ -73,6 +73,22 @@ func (f *FileInfo) ToStruct() driver.FileInfo {
 	}
 }
 
+func DriverFileInfoToNative(fileInfo driver.FileInfo) FileInfo {
+	return FileInfo{
+		path:        fileInfo.Path,
+		fullName:    fileInfo.FullName,
+		name:        fileInfo.Name,
+		contentType: fileInfo.ContentType,
+		size:        fileInfo.Size,
+		extension:   fileInfo.Extension,
+		dirPath:     fileInfo.DirPath,
+		mode:        fileInfo.Mode,
+		createdAt:   fileInfo.CreatedAt,
+		updatedAt:   fileInfo.UpdatedAt,
+		sys:         fileInfo.Sys,
+	}
+}
+
 func (f *FileInfo) Name() string {
 	return f.name
 }

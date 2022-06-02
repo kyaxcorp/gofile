@@ -10,6 +10,10 @@ type LocationInterface interface {
 	// DeleteFile - File status will be used for deletion
 	DeleteFile(file FileInterface) error
 
+	// FileFromInfo -> it recreates the file struct/object from FileInfo so further manipulations can be made
+	FileFromInfo(fileInfo FileInfo) (FileInterface, error)
+	// RestoreFile by FileInfo
+
 	//Save() // should not be used...
 	//Copy()
 	//Move()

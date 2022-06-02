@@ -12,7 +12,7 @@ func (l *Location) newFile(filePath string) (*File, error) {
 
 	// generate the file itself
 	f := &File{
-		FPath:    filePath,
+		//FPath:    filePath,
 		info:     *fInfo,
 		location: l,
 	}
