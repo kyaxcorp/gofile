@@ -4,6 +4,9 @@ type LocationInterface interface {
 	// Open the location
 	Open() (bool, error)
 
+	// TODO: -> it would be cool to open a file remotely through locations!
+	//OpenFile()
+
 	CopyFile(file FileInterface, dest FileDestination) (FileInterface, error)
 	MoveFile(file FileInterface, dest FileDestination) (FileInterface, error)
 
