@@ -1,8 +1,10 @@
 package helper
 
 import (
+	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -72,4 +74,17 @@ func ExtractFileNameDetails(baseName string) FileNameDetails {
 		BaseName:  baseName,
 		Extension: extension,
 	}
+}
+
+// Root -> It should return the current process dir path
+func Root() (dir string) {
+	//currentDirPath, err := os.Getwd()
+	path, err := os.Executable()
+	if err != nil || path == "" {
+		log.Println("Error getting Root Path", err)
+		return ""
+	}
+	currentDirPath := filepath.Dir(path)
+	currentDirPath += filepath.FromSlash("/")
+	return currentDirPath
 }
